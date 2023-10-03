@@ -90,6 +90,7 @@ println("###########################################################")
 #   Plot results
 ###
 
+# Monte Carlo
 failures_MC = limitstate(samples_1) .<= 0
 
 scatter(samples_1.X1, samples_1.X2, color = :blue)
@@ -101,8 +102,10 @@ savefig("inputs_mc.png")
 
 histogram(samples_1.y)
 histogram!(samples_1.y[failures_MC], color = :red, label = "Failures")
+xlabel!("y")
 savefig("outputs_mc.png")
 
+# Subset 1
 
 N_levels_ss_1 = maximum(samples_2.level)
 scatter()
@@ -110,12 +113,39 @@ for i = 1:N_levels_ss_1
     level_samples = samples_2.level .== i
     scatter!(samples_2.X1[level_samples], samples_2.X2[level_samples], label = "level $i")
 end
-
 xlabel!("X1")
 ylabel!("X2")
 title!("Input space SS 1")
-savefig("inputs_ss_1.png")
+savefig("input_ss_1.png")
 
-# histogram(samples_1.y)
-# histogram!(samples_1.y[failures_MC], color = :red, label = "Failures")
-# savefig("outputs_mc.png")
+
+histogram()
+for i = 1:N_levels_ss_1
+    level_samples = samples_2.level .== i
+    histogram!(samples_2.y[level_samples], label = "level $i")
+end
+xlabel!("y")
+title!("Output space SS 1")
+savefig("output_ss_1.png")
+
+# Subset 2
+
+N_levels_ss_2 = maximum(samples_2.level)
+scatter()
+for i = 1:N_levels_ss_2
+    level_samples = samples_3.level .== i
+    scatter!(samples_3.X1[level_samples], samples_3.X2[level_samples], label = "level $i")
+end
+xlabel!("X1")
+ylabel!("X2")
+title!("Input space SS 2")
+savefig("input_ss_2.png")
+
+histogram()
+for i = 1:N_levels_ss_2
+    level_samples = samples_3.level .== i
+    histogram!(samples_3.y[level_samples], label = "level $i")
+end
+xlabel!("y")
+title!("Output space SS 2")
+savefig("output_ss_2.png")
