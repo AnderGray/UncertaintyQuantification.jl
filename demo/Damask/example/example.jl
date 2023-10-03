@@ -72,7 +72,7 @@ conf_lo_3 = max(conf_lo_3, 0)
 
 println("Monte Carlo: pf = $pf_1")
 println("Nsamples = $(length(samples_1.y))")
-println("$(100 * alpha) confidence interval: [$conf_lo, $conf_hi]")
+println("$(100 * alpha) confidence interval: [$conf_lo_mc, $conf_hi_mc]")
 println("###########################################################")
 
 println("Subset 1:  pf = $pf_2")
