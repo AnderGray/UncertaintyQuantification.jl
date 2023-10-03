@@ -130,7 +130,7 @@ savefig("output_ss_1.png")
 
 # Subset 2
 
-N_levels_ss_2 = maximum(samples_2.level)
+N_levels_ss_2 = maximum(samples_3.level)
 scatter()
 for i = 1:N_levels_ss_2
     level_samples = samples_3.level .== i
